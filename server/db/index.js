@@ -11,11 +11,16 @@ const pool = mysql.createPool({
 
 let archerknightdb = {};
 
-archerknightdb.all = () => {
+
+
+//get vessels 
+archerknightdb.getVessels = () => {
+
+    var sql = 'SELECT * FROM vessels';
 
     return new Promise((resolve, reject) => {
 
-        pool.query('SELECT * FROM vessels', (err, results) => {
+        pool.query(sql, (err, results) => {
             if (err) {
                 return reject(err);
             }
@@ -26,5 +31,23 @@ archerknightdb.all = () => {
     });
 
 };
+
+
+archerknightdb.addNewVessel = (vesselName,imgString,lng,lat,countryID) => {
+
+    var sql = 'INSERT INTO vessels(`Name`, `Image`, `Longitude`, `Latitude`, `CountryID`) VALUES (?,?,?,?,?)' ;
+
+    return new Promise((resolve,reject) =>{
+        pool.query(sql,[vesselName,imgString,lng,lat,countryID], (err, results) => {
+            if(err) {
+                return reject(err);
+            }
+
+            return resolve(results);
+        });
+    })
+}
+
+
 
 module.exports = archerknightdb;
