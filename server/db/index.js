@@ -32,6 +32,27 @@ archerknightdb.getVessels = () => {
 
 };
 
+//get countries 
+
+archerknightdb.getCountries = () => {
+
+    var sql = 'SELECT * FROM countries';
+
+    return new Promise((resolve, reject) => {
+
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+
+            return resolve(results);
+        });
+
+    });
+
+};
+
+//add new vessel to db
 
 archerknightdb.addNewVessel = (vesselName,imgString,lng,lat,countryID) => {
 
