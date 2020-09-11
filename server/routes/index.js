@@ -3,7 +3,7 @@ const db = require("../db")
 const router = express.Router();
 
 
-//list all vessels route
+//list all vessels 
 router.get('/vessel', async (req, res, next) =>{
 
     try{
@@ -17,7 +17,7 @@ router.get('/vessel', async (req, res, next) =>{
 });
 
 
-//list all countries route 
+//list all countries  
 
 router.get('/countries', async (req, res, next) =>{
 
@@ -35,7 +35,7 @@ router.get('/countries', async (req, res, next) =>{
 
 router.post('/vessel/submit', async (req,res, next) =>{
     let ves = req.body;
-    console.log(req.body)
+    console.log(req.body);
 
     try{
         let results = await db.addNewVessel(ves.name,ves.img,ves.lng,ves.lat,ves.country);
@@ -48,6 +48,31 @@ router.post('/vessel/submit', async (req,res, next) =>{
  });
 
 
- 
+router.put('/vessel/:id', async (req,res,next) => {
+    let ves = req.body; 
+    console.log(req.body);
+
+    try{
+        let results = await db.updateVessel(req.params.id,ves.name,ves.img,ves.lng,ves.lat,ves.country);
+        console.log(results)
+        res.send("Vessel updated")
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+})
+
+router.delete('/vessel/:id', async (req,res,next) => {
+    try{
+        let results = await db.deleteVessel(req.params.id);
+        console.log(results);
+        res.send("Vessel Deleted")
+    } catch(e) {
+        console.log(e); 
+        res.sendStatus(500);
+    }
+})
+
+
 
 module.exports = router;

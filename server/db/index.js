@@ -69,6 +69,33 @@ archerknightdb.addNewVessel = (vesselName,imgString,lng,lat,countryID) => {
     })
 }
 
+//update existing vessel 
+archerknightdb.updateVessel = (vesselID, vesselName, imgString, lng, lat, countryID) => {
+    var sql = 'UPDATE vessels SET `Name` = ?, `Image` = ?, `Longitude` = ?, `Latitude` = ?, `CountryID` = ? WHERE (`IMO` = ?)';
 
+    return new Promise((resolve, reject)=> {
+        pool.query(sql,[vesselName,imgString,lng,lat,countryID,vesselID], (err,results) => {
+            if(err) {
+                return reject(err);
+            }
+
+            return resolve(results);
+        })
+    })
+}
+
+archerknightdb.deleteVessel = (vesselID) => {
+    var sql = 'DELETE FROM vessels WHERE (`IMO` = ?)';
+
+    return new Promise((resolve, reject)=> {
+        pool.query(sql,[vesselID], (err,results) => {
+            if(err) {
+                return reject(err); 
+            }
+
+            return resolve(results);
+        })
+    })
+}
 
 module.exports = archerknightdb;
