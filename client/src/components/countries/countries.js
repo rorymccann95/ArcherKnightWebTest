@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './countries.css';
 
 class Countries extends Component {
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './vessels.css';
 
 class Vessels extends Component {
 
