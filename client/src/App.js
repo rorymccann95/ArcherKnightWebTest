@@ -5,16 +5,18 @@ import Vessels from './components/vessels/vessels';
 import VesselAddForm from './components/vessels/addVessel';
 import VesselEditForm from './components/vessels/editVessel';
 import CountryAddForm from './components/countries/addCountry';
+import DeleteVesselForm from './components/vessels/deleteVessel';
 
 class  App extends Component {
   render() {
     return (
       <div className="App">
-        <Vessels/>
+        {/* <Vessels/>
         <Countries/> 
         <VesselAddForm/>  
         <VesselEditForm/> 
-        <CountryAddForm/>
+        <CountryAddForm/> */}
+        <DeleteVesselForm/>
       </div>
     );
 }
