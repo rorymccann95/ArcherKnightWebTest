@@ -49,6 +49,21 @@ router.post('/vessel/submit', async (req,res, next) =>{
     }
  });
 
+ 
+ router.post('/country/submit', async (req,res, next) =>{
+    let coun = req.body;
+    console.log(req.body);
+
+    try{
+        let results = await db.addNewCountry(coun.name);
+        console.log(results)
+        res.send("New country added successfully")
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+ });
+
 
 router.put('/vessel/:id', async (req,res,next) => {
     let ves = req.body; 

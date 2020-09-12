@@ -4,6 +4,7 @@ import Countries from './components/countries/countries';
 import Vessels from './components/vessels/vessels';
 import VesselAddForm from './components/vessels/addVessel';
 import VesselEditForm from './components/vessels/editVessel';
+import CountryAddForm from './components/countries/addCountry';
 
 class  App extends Component {
   render() {
@@ -12,7 +13,8 @@ class  App extends Component {
         <Vessels/>
         <Countries/> 
         <VesselAddForm/>  
-        <VesselEditForm/>
+        <VesselEditForm/> 
+        <CountryAddForm/>
       </div>
     );
 }
