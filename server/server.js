@@ -4,16 +4,18 @@ const bodyParser = require('body-parser');
 
 const app = express(); 
 
+const port = 5000;
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
 app.use(bodyParser.json());
 
-app.use('/api/', apiRouter)
+app.use('/api/', apiRouter);
 
 app.use(express.json());
 
-app.listen(3000, () => {
-    console.log("The server is alive and well, running on this port: 3000")
-})
+app.listen(port, () => {
+    console.log(`The server is alive and well, running on this port: ${port}` )
+});

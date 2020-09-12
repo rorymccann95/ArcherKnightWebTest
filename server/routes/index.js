@@ -8,6 +8,7 @@ router.get('/vessel', async (req, res, next) =>{
 
     try{
         let results = await db.getVessels();
+        console.log("Request to get all vessels successful")
         res.json(results);
     } catch(e) {
         console.log(e);
@@ -19,10 +20,11 @@ router.get('/vessel', async (req, res, next) =>{
 
 //list all countries  
 
-router.get('/countries', async (req, res, next) =>{
+router.get('/country', async (req, res, next) =>{
 
     try{
         let results = await db.getCountries();
+        console.log("Request to get all countries successful")
         res.json(results);
     } catch(e) {
         console.log(e);
