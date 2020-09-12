@@ -3,6 +3,7 @@ import './App.css';
 import Countries from './components/countries/countries';
 import Vessels from './components/vessels/vessels';
 import VesselAddForm from './components/vessels/addVessel';
+import VesselEditForm from './components/vessels/editVessel';
 
 class  App extends Component {
   render() {
@@ -10,10 +11,10 @@ class  App extends Component {
       <div className="App">
         <Vessels/>
         <Countries/> 
-        <VesselAddForm/> 
+        <VesselAddForm/>  
+        <VesselEditForm/>
       </div>
     );
-    // return <TextField color="primary" label="kms" >Fuck this</TextField>
 }
 
 }

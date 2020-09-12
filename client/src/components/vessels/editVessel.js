@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextField, Select, MenuItem, Button } from '@material-ui/core/';
 
-export class VesselAddForm extends Component {
+export class VesselEditForm extends Component {
 
   
 
@@ -11,7 +11,9 @@ export class VesselAddForm extends Component {
         lng: "",
         lat: "",
         country: "",
-        countries: []
+        countries: [],
+        vessels: [],
+        vesselSelect: ""
     }
 
 
@@ -25,7 +27,7 @@ export class VesselAddForm extends Component {
     submitVessel() {
 
        var requestOptions = {
-            method: "POST",
+            method: "PUT",
             headers: {"Content-Type": 'application/json'},
             body: JSON.stringify({
                 name: this.state.name, 
@@ -37,24 +39,41 @@ export class VesselAddForm extends Component {
         }
 
 
-        fetch('/api/vessel/submit', requestOptions)
+        fetch('/api/vessel/' + this.state.vesselSelect, requestOptions)
             .then(res => res.json())
-            .then(alert("Vessel Added: Please refresh page to see update"))
+            .then(alert("Vessel Updated: Please refresh page to see update"))
         }
 
     componentDidMount() {
         fetch('/api/country')
             .then(res => res.json())
-            .then(countries => this.setState({ countries }, () => console.log('Countries fetched for vessel add form', countries)))
+            .then(countries => this.setState({ countries }, () => console.log('Countries fetched for vessel edit form', countries)))
+
+        fetch('/api/vessel')
+            .then(res => res.json())
+            .then(vessels => this.setState({ vessels}, () => console.log('Vessels fetched for vessel edit form', vessels)))
     }
 
     render() {
-        const { name, img, lng, lat, country } = this.state;
+        const { name, img, lng, lat, country, vesselSelect } = this.state;
         return (
 
             <React.Fragment>
-                <h2>Add new Vessel</h2>
+                <h2>Edit Vessel</h2>
                 <br />
+                <Select
+                    style={{ minWidth: 228 }}
+                    variant="outlined"
+                    value={vesselSelect} displayEmpty
+                    onChange={this.handleChange('vesselSelect')}
+                    inputProps={{ name: 'Vessel' }}
+                >
+                    <MenuItem value="" disabled>Select Vessel To Edit</MenuItem>
+                    {this.state.vessels.map(y =>
+                        <MenuItem value={y.IMO}>{y.Name}</MenuItem>)}
+                </Select>
+                <br/>
+                <br/>
                 <TextField
                     variant="outlined"
                     placeholder="Enter Vessel Name"
@@ -103,12 +122,12 @@ export class VesselAddForm extends Component {
                 >
                     <MenuItem value="" disabled>Select Country</MenuItem>
                     {this.state.countries.map(x =>
-                        <MenuItem value={x.CountryID}>{x.Name}</MenuItem>)}
+                    <MenuItem value={x.CountryID}>{x.Name}</MenuItem>)}
                 </Select>
                 <br />
                 <br />
                 
-                <Button variant="contained" color="primary" onClick ={ () => {this.submitVessel()}}> Add Vessel</Button>
+                <Button variant="contained" color="primary" onClick ={ () => {this.submitVessel()}}> Update Vessel</Button>
 
 
             </React.Fragment>
@@ -117,4 +136,4 @@ export class VesselAddForm extends Component {
     }
 }
 
-export default VesselAddForm
+export default VesselEditForm
