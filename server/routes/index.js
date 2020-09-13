@@ -18,6 +18,21 @@ router.get('/vessel', async (req, res, next) =>{
 });
 
 
+//list all vessels with join on countries table
+
+router.get('/vesselfilter', async (req, res, next) =>{
+
+    try{
+        let results = await db.getVesselsJoin();
+        console.log("Request to get all vessels with join successful")
+        res.json(results);
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+
+});
+
 //list all countries  
 
 router.get('/country', async (req, res, next) =>{

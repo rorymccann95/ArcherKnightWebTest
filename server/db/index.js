@@ -32,6 +32,26 @@ archerknightdb.getVessels = () => {
 
 };
 
+//get vessels with country join 
+
+archerknightdb.getVesselsJoin = () => {
+
+    var sql = 'SELECT IMO, vessels.Name, Image, Longitude, Latitude, (countries.Name) as CountryName FROM vessels Inner Join countries On vessels.CountryID=countries.CountryID ORDER BY IMO' ;
+
+    return new Promise((resolve, reject) => {
+
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+
+            return resolve(results);
+        });
+
+    });
+
+};
+
 //get countries 
 
 archerknightdb.getCountries = () => {

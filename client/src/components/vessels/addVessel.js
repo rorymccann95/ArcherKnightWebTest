@@ -52,8 +52,8 @@ export class VesselAddForm extends Component {
         const { name, img, lng, lat, country } = this.state;
         return (
 
-            <React.Fragment>
-                <h2>Add new Vessel</h2>
+            <React.Fragment >
+                <h2 style={{color: "white"}}>Add new Vessel</h2>
                 <br />
                 <TextField
                     variant="outlined"
@@ -61,6 +61,7 @@ export class VesselAddForm extends Component {
                     label="Vessel Name"
                     onChange={this.handleChange('name')}
                     defaultValue={name}
+                    color="secondary"
                 />
                 <br />
                 <br />
@@ -70,6 +71,7 @@ export class VesselAddForm extends Component {
                     label="Image location"
                     onChange={this.handleChange('img')}
                     defaultValue={img}
+                    color="secondary"
                 />
                 <br />
                 <br />
@@ -80,6 +82,7 @@ export class VesselAddForm extends Component {
                     onChange={this.handleChange('lng')}
                     defaultValue={lng}
                     type="number"
+                    color="secondary"
                 />
                 <br />
                 <br />
@@ -90,6 +93,7 @@ export class VesselAddForm extends Component {
                     onChange={this.handleChange('lat')}
                     defaultValue={lat}
                     type="number"
+                    color="secondary"
                 />
                 <br />
                 <br />
@@ -100,6 +104,7 @@ export class VesselAddForm extends Component {
                     value={country} displayEmpty
                     onChange={this.handleChange('country')}
                     inputProps={{ name: 'country' }}
+                    color="secondary"
                 >
                     <MenuItem value="" disabled>Select Country</MenuItem>
                     {this.state.countries.map(x =>
@@ -108,7 +113,7 @@ export class VesselAddForm extends Component {
                 <br />
                 <br />
                 
-                <Button variant="contained" color="primary" onClick ={ () => {this.submitVessel()}}> Add Vessel</Button>
+                <Button variant="contained" color="secondary" onClick ={ () => {this.submitVessel()}}> Add Vessel</Button>
 
 
             </React.Fragment>

@@ -60,6 +60,8 @@ export class DeleteVesselForm extends Component {
                 <br/>
                 
                 <Button variant="contained" color="primary" onClick ={ () => {this.submitVessel()}}> Delete Vessel</Button>
+                <br/>
+                <br/>
             </React.Fragment>
 
         )

@@ -17,7 +17,7 @@ class Countries extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{color: "white"}}>
                 <h2>Countries</h2>
                 <ul>
                     {this.state.countries.map(country =>

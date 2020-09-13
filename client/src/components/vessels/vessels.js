@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+
 class Vessels extends Component {
 
     constructor(){
@@ -17,7 +19,7 @@ class Vessels extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{color: "white"}}>
                 <h2>Vessels</h2>
                 <ul>
                     {this.state.vessels.map(vessel =>
